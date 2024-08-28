@@ -11,7 +11,7 @@ defmodule DemoWeb.Endpoint do
     same_site: "Lax"
   ]
 
-  socket "/live", Phoenix.LiveView.Socket,
+  socket "/some_subdirectory/live", Phoenix.LiveView.Socket,
     websocket: [connect_info: [session: @session_options]],
     longpoll: [connect_info: [session: @session_options]]
 
@@ -20,7 +20,7 @@ defmodule DemoWeb.Endpoint do
   # You should set gzip to true if you are running phx.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/",
+    at: "/some_subdirectory",
     from: :demo,
     gzip: false,
     only: DemoWeb.static_paths()
