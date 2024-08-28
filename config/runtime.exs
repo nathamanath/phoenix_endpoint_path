@@ -51,7 +51,7 @@ if config_env() == :prod do
 
   config :demo, DemoWeb.Endpoint,
     # Because easier to run locally
-    url: [host: host, port: 80, scheme: "http"],
+    url: [host: host, port: 80, scheme: "http", path: "/some_subdirectory"],
     http: [
       # Enable IPv6 and bind on all interfaces.
       # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.

@@ -8,8 +8,14 @@
       <%= assigns[:page_title] || "Demo" %>
     </.live_title>
     <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
-    <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
+
+    <script>
+      window.__APP__  = window.__APP__ || {}
+
+      window.__APP__.pathPrefix = "<%= Application.get_env(:demo, DempWeb.Endpoint)[:url][:path] %>"
     </script>
+
+    <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}></script>
   </head>
   <body class="bg-white">
     <%= @inner_content %>
