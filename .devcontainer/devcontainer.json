@@ -1,0 +1,23 @@
+{
+  "dockerComposeFile": ["docker-compose.yml"],
+  "features": {},
+  "workspaceFolder": "/workspace",
+  "service": "workspace",
+  "name": "Demo app",
+  "onCreateCommand": "elixir --version",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "jakebecker.elixir-ls",
+        "ms-azuretools.vscode-docker",
+        "streetsidesoftware.code-spell-checker",
+        "wayou.vscode-todo-highlight",
+        "pgourlain.erlang",
+        "ritvyk.heex-html",
+        "syler.sass-indented"
+      ]
+    }
+  },
+  "forwardPorts": [4000],
+  "remoteUser": "elixir"
+}

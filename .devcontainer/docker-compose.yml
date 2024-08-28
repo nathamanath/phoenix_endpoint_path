@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  # This is dev environment
+  workspace:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+
+    volumes:
+      - ../:/workspace
+
+    # Overrides default command so things don't shut down after the process ends.
+    command: bash -c "sleep infinity"
+
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: demo_dev
+    volumes:
+      - demo_pg_data:/var/lib/postgresql/data
+
+volumes:
+  demo_pg_data:

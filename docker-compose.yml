@@ -1,0 +1,39 @@
+services:
+  demo:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+
+    volumes:
+      - ../:/workspace
+
+    depends_on:
+      - postgres
+
+    environment:
+      DB_HOSTNAME: postgres
+      DB_DATABASE: demo_prod
+      DB_USERNAME: demo
+      DB_PASSWORD: M_Ef6Yu5l9vL
+      SECRET_KEY_BASE: sHzMwuWcvOMXN7jmaVcbTO8NNm0aFM3P9ghJXTA0epeTJtD4oK3li2HTtBpzAmNl
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: demo
+      POSTGRES_PASSWORD: M_Ef6Yu5l9vL
+      POSTGRES_DB: demo_prod
+    volumes:
+      - demo_prod_pg_data:/var/lib/postgresql/data
+
+  nginx:
+    image: nginx:1.27.0
+
+    ports:
+      - "8080:8080"
+
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/demo.conf
+
+volumes:
+  demo_prod_pg_data:
